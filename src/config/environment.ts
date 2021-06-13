@@ -4,5 +4,5 @@ dotenv.config({
 });
 export default {
   SERVER_PORT: process.env.PORT,
-  IS_DEV: process.env.NODE_ENV === 'production',
+  IS_DEV: process.env.NODE_ENV === 'development',
 };
