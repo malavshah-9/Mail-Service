@@ -8,11 +8,13 @@ import Response from '../util/ResoponseFormatter';
 
 export default function (app: Application) {
   app.use(PREFIXES.PREFIX_ROUTE_V1_API, healthRouter);
-  app.use((_, res) => {
+  app.use((req, res) => {
+    req.log.error(' Route not found ', req.path);
     return Response.createResponse(res, httpStatus.NOT_FOUND);
   });
   app.use((err: Error, req, res, next) => {
     if (err) {
+      req.log.error(' Error happened  ', req.path);
       return Response.createResponse(
         res,
         httpStatus.INTERNAL_SERVER_ERROR,
