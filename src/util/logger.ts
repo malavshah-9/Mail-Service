@@ -16,5 +16,6 @@ class Logger {
     });
   }
 }
-
-export default new Logger();
+const logObj = new Logger();
+export default logObj;
+export const logger = logObj.logger.logger;
