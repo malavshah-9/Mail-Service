@@ -28,3 +28,17 @@ This email delivery service is independent service used to send email using vari
 
 1. Will provide webhook to update details once you provide details view REST call to this service.
 2. Will publish data in RabbitMQ when email has been sent.
+
+## Database
+
+- Database: Postgres
+- Schema:
+
+| Column Name  | Column Type | Limit | Constraints1 |
+| ------------ | :---------: | :---: | :----------: |
+| Id           |    UUID     |       |      PK      |
+| Mail Subject |   String    |  500  |              |
+| Mail Content |    Text     | 10000 |              |
+| Mail Send To |   Text[]    |       |              |
+| Mail CC      |   Text[]    |       |              |
+| Mail By      |   Text[]    |       |              |
