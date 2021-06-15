@@ -12,7 +12,9 @@ class DBClient {
       host: env.DATABASE_HOST,
       port: parseInt(env.DATABASE_PORT + ''),
     });
-    this.dbClient.sync();
+    if (env.IS_DEV) {
+      this.dbClient.sync();
+    }
   }
   getClient() {
     if (!this.dbClient) {
