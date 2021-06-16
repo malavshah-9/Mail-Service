@@ -32,6 +32,26 @@ class MailController {
       );
     }
   }
+  async get(req:Request,res:Response,next:NextFunction){
+    try{
+      let getResult=await MailModel.getBySenderId(req.params['senderId']);
+      return ResponseFormatter.createResponse(
+        res,
+        http.OK,
+        'Mail details got successfully',
+        getResult
+      )
+    }
+    catch(e){
+      req.log.error(e, " Error in getting the mail ");
+      return ResponseFormatter.createResponse(
+        res,
+        http.INTERNAL_SERVER_ERROR,
+        "Some error occured while getting mail data ",
+        e
+      )
+    }
+  }
 }
 
 export default new MailController();
