@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import http from 'http-status-codes';
 import MailModel from '../model/mail.model';
+import Mail from '../../../services/Mail.service';
 import { MAIL_STATUS } from '../../../util/constants';
 import ResponseFormatter from '../../../util/ResoponseFormatter';
+import env from '../../../config/environment';
 
 class MailController {
   async create(req: Request, res: Response, next: NextFunction) {
@@ -16,6 +18,15 @@ class MailController {
         req.body.senderId,
         MAIL_STATUS.ADD
       );
+      let sendEmailDetails = await Mail.sendMailMultiple({
+        cc: req.body.cc,
+        from: env.TWILLIO_VERIFIED_EMAIL+"",
+        html: req.body.content,
+        subject: req.body.subject,
+        text: req.body.content,
+        to: req.body.sendTo
+      });
+      req.log.info(sendEmailDetails," Successfully Sending Emaill ")
       return ResponseFormatter.createResponse(
         res,
         http.ACCEPTED,
