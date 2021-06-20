@@ -12,7 +12,9 @@ class Consumer {
   constructor() {}
   async initConnection(): Promise<Channel> {
     try {
-      this.rabbitConnection = await amqlib.connect('amqp://localhost:5672');
+      this.rabbitConnection = await amqlib.connect(
+        `amqp://${env.RABBITMQ_HOST}:${env.RABBITMQ_PORT}`
+      );
       let rabbitChannel = await this.rabbitConnection.createChannel();
       await rabbitChannel.assertQueue(env.RABBITMQ_CHANNEL_NAME + '', {
         durable: true,
