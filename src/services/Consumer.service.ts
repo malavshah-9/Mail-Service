@@ -38,10 +38,9 @@ class Consumer {
       throw new Error('Channel not found while consuming ');
     }
   }
-  async ackMsg(rabbitChannel: Channel, msg: Message) {
+  async ackMsg(rabbitChannel: Channel, msg: any) {
     if (rabbitChannel) {
-      await rabbitChannel.ack(msg);
-      return;
+      return rabbitChannel.ack(msg);
     } else {
       throw new Error('Channel not found while acknowledging ');
     }
