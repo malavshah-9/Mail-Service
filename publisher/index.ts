@@ -5,7 +5,7 @@ import { SendMailOptions } from '../src/types/Mail.types';
 
 async function startSending() {
   let emailOptions: SendMailOptions = {
-    cc: ['mdshah9574@gmail.com', 'jackjonesshah@gmail.com'],
+    cc: ['jackjonesshah@gmail.com'],
     subject: ' Sending Email from Publisher',
     html: '<b>Hello World From Publisher</b>',
     to: 'mdshah9574@gmail.com',

@@ -18,8 +18,6 @@ class Mail {
   }
   async sendMailMultiple(sendEmail: SendMailOptions) {
     try {
-      logger.info(sendEmail);
-      logger.info(typeof sendEmail, ' sendEmail type');
       //  @ts-ignore
       let multiEmailResponse = await sg.sendMultiple(sendEmail);
       return multiEmailResponse;
