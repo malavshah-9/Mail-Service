@@ -1,3 +1,4 @@
+import { v1 as uuidv1 } from 'uuid';
 import Publisher from './publisher-demo';
 import env from '../src/config/environment';
 import { logger } from '../src/util/logger';
@@ -8,9 +9,12 @@ async function startSending() {
     cc: ['jackjonesshah@gmail.com'],
     subject: ' Sending Email from Publisher',
     html: '<b>Hello World From Publisher</b>',
-    to: 'mdshah9574@gmail.com',
+    to: ['mdshah9574@gmail.com'],
     from: '',
     text: 'asds',
+    // @ts-ignore
+    mailBy: uuidv1(),
+    senderId: uuidv1(),
   };
   await Publisher.initConnection();
   let rabbitChannel = Publisher.getChannel();
