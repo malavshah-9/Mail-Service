@@ -62,6 +62,26 @@ class MailController {
       );
     }
   }
+  async getByStatus(req: Request, res: Response, next: NextFunction) {
+    try {
+      let getResult = await MailModel.getByGivenAttribute({
+        status: MAIL_STATUS.FAILED,
+      });
+      return ResponseFormatter.createResponse(
+        res,
+        http.OK,
+        ' Fetched failed delivery details successfully! ',
+        getResult
+      );
+    } catch (e) {
+      req.log.error(e, ' error in getByStatus ');
+      return ResponseFormatter.createResponse(
+        res,
+        http.INTERNAL_SERVER_ERROR,
+        'Some error occured'
+      );
+    }
+  }
 }
 
 export default new MailController();

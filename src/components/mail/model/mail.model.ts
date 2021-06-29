@@ -43,6 +43,13 @@ class MailModel {
       },
     });
   }
+  async getByGivenAttribute(attr: any = {}) {
+    return MailSchema.findAndCountAll({
+      where: {
+        ...attr,
+      },
+    });
+  }
 }
 
 export default new MailModel();
