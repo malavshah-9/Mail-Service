@@ -8,7 +8,8 @@
     "dev": "tsc -w --outDir build & nodemon -q -w build build/server.js",
     "build": "tsc --outDir build",
     "start": "tsc --outDir build && node build/server",
-    "publish": "tsc -p tsconfig.publisher.json --outDir publish_build && node publish_build/publisher"
+    "publish": "tsc -p tsconfig.publisher.json --outDir publish_build && node publish_build/publisher",
+    "clean": "rm -R build/"
   },
   "keywords": [],
   "author": "",
@@ -44,6 +45,7 @@
     "pino": "^6.11.3",
     "pino-http": "^5.5.0",
     "pino-pretty": "^5.0.2",
+    "rmraf": "^1.0.3",
     "sequelize": "^6.6.2",
     "uuid": "^8.3.2"
   }
