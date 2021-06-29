@@ -16,7 +16,8 @@ class MailController {
         req.body.cc,
         req.body.mailBy,
         req.body.senderId,
-        MAIL_STATUS.ADD
+        MAIL_STATUS.ADD,
+        0
       );
       let sendEmailDetails = await Mail.sendMailMultiple({
         cc: req.body.cc,
@@ -27,6 +28,15 @@ class MailController {
         to: req.body.sendTo,
       });
       req.log.info(sendEmailDetails, ' Successfully Sending Emaill ');
+      let updateMailStatusAndCount = await MailModel.update(
+        {
+          status: MAIL_STATUS.SUCCESS,
+          sendCount: 1,
+        },
+        // @ts-ignore
+        createResult.toJSON().id
+      );
+      req.log.debug(updateMailStatusAndCount);
       return ResponseFormatter.createResponse(
         res,
         http.ACCEPTED,

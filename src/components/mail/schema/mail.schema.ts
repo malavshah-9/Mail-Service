@@ -41,6 +41,12 @@ Mail.init(
       unique: true,
       allowNull: false,
     },
+    sendCount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      unique: false,
+    },
   },
   {
     sequelize: db.getClient(),

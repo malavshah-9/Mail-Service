@@ -20,7 +20,8 @@ class RabbitMQ {
           sendEmailOptions.cc,
           sendEmailOptions.mailBy,
           sendEmailOptions.senderId,
-          MAIL_STATUS.ADD
+          MAIL_STATUS.ADD,
+          0
         );
         const sendEmail = await Mail.sendMailMultiple({
           cc: sendEmailOptions.cc,
@@ -34,7 +35,10 @@ class RabbitMQ {
         // @ts-ignore
         sendEmailId = mailCreateResult.toJSON().id;
         const updateEmailStatus = await MailModel.update(
-          MAIL_STATUS.SUCCESS,
+          {
+            status: MAIL_STATUS.SUCCESS,
+            sendCount: 1,
+          },
           // @ts-ignore
           mailCreateResult.toJSON().id
         );
@@ -47,7 +51,10 @@ class RabbitMQ {
     } catch (e) {
       if (sendEmailId) {
         const updateEmailStatus = await MailModel.update(
-          MAIL_STATUS.FAILED,
+          {
+            status: MAIL_STATUS.FAILED,
+            sendCount: 1,
+          },
           // @ts-ignore
           sendEmailId
         );

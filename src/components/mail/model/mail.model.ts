@@ -9,7 +9,8 @@ class MailModel {
     cc: string[],
     mailBy: string,
     senderId: string,
-    status: string = MAIL_STATUS.ADD
+    status: string = MAIL_STATUS.ADD,
+    sendCount: Number = 0
   ) {
     return MailSchema.create({
       subject,
@@ -19,19 +20,15 @@ class MailModel {
       mailBy,
       senderId,
       status,
+      sendCount,
     });
   }
-  async update(status, id) {
-    return MailSchema.update(
-      {
-        status,
+  async update(updatedDetails = {}, id) {
+    return MailSchema.update(updatedDetails, {
+      where: {
+        id,
       },
-      {
-        where: {
-          id,
-        },
-      }
-    );
+    });
   }
   async getById(id: any) {
     return MailSchema.findByPk(id);
