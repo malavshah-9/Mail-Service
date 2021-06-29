@@ -41,7 +41,7 @@ class MailController {
         res,
         http.ACCEPTED,
         'Mail added successfully',
-        createResult.toJSON
+        createResult.toJSON()
       );
     } catch (e) {
       req.log.error(e, 'Error in create of MailController');
