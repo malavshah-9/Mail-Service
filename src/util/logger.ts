@@ -9,7 +9,7 @@ class Logger {
       prettyPrint: env.IS_DEV
         ? {
             colorize: true,
-            translateTime: true,
+            translateTime: 'SYS:standard',
             levelFirst: true,
           }
         : false,
