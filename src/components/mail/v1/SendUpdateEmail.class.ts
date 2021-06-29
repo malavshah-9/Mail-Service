@@ -5,6 +5,13 @@ import { logger } from '../../../util/logger';
 import { SendMailOptions } from '../../../types/Mail.types';
 
 class SendEmail {
+  /**
+   *
+   * @param id Row id for which you want to send email and update details
+   * @param currentCount Current sendCount - Meaning total retry count till now
+   * @param mailOptions Mail delivery options
+   * @returns Will return the data including mail delivery data and DB updated data or will throw error
+   */
   async sendEmail(
     id: String,
     currentCount: number,
