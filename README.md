@@ -42,3 +42,7 @@ This email delivery service is independent service used to send email using vari
 | Mail Send To |   Text[]    |       |              |
 | Mail CC      |   Text[]    |       |              |
 | Mail By      |   Text[]    |       |              |
+
+## Retry Logic
+
+Description: Here I wanted to implement retry logic, which will send the mail which have the `status=FAILED`
