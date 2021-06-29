@@ -41,6 +41,7 @@ const server = createServer(app);
     });
     process.on('unhandledRejection', (err) => {
       logger.error(err || '', ' unhandledRejection ');
+      process.exit(1);
     });
   } catch (e) {
     logger.error(e, ' error in initializing server ');

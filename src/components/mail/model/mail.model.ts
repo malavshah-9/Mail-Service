@@ -37,7 +37,7 @@ class MailModel {
     return MailSchema.findByPk(id);
   }
   async getBySenderId(senderId: string) {
-    return MailSchema.findAll({
+    return MailSchema.findAndCountAll({
       where: {
         senderId,
       },

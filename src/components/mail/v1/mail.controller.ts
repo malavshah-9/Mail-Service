@@ -20,13 +20,13 @@ class MailController {
       );
       let sendEmailDetails = await Mail.sendMailMultiple({
         cc: req.body.cc,
-        from: env.TWILLIO_VERIFIED_EMAIL+"",
+        from: env.TWILLIO_VERIFIED_EMAIL + '',
         html: req.body.content,
         subject: req.body.subject,
         text: req.body.content,
-        to: req.body.sendTo
+        to: req.body.sendTo,
       });
-      req.log.info(sendEmailDetails," Successfully Sending Emaill ")
+      req.log.info(sendEmailDetails, ' Successfully Sending Emaill ');
       return ResponseFormatter.createResponse(
         res,
         http.ACCEPTED,
@@ -43,24 +43,23 @@ class MailController {
       );
     }
   }
-  async get(req:Request,res:Response,next:NextFunction){
-    try{
-      let getResult=await MailModel.getBySenderId(req.params['senderId']);
+  async get(req: Request, res: Response, next: NextFunction) {
+    try {
+      let getResult = await MailModel.getBySenderId(req.params['senderId']);
       return ResponseFormatter.createResponse(
         res,
         http.OK,
         'Mail details got successfully',
         getResult
-      )
-    }
-    catch(e){
-      req.log.error(e, " Error in getting the mail ");
+      );
+    } catch (e) {
+      req.log.error(e, ' Error in getting the mail ');
       return ResponseFormatter.createResponse(
         res,
         http.INTERNAL_SERVER_ERROR,
-        "Some error occured while getting mail data ",
+        'Some error occured while getting mail data ',
         e
-      )
+      );
     }
   }
 }
