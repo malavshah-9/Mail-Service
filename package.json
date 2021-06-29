@@ -8,7 +8,9 @@
     "dev": "tsc -w --outDir build & nodemon -q -w build build/server.js",
     "build": "tsc --outDir build",
     "start": "tsc --outDir build && node build/server",
-    "publish": "tsc -p tsconfig.publisher.json --outDir publish_build && node publish_build/publisher"
+    "publish": "tsc -p tsconfig.publisher.json --outDir publish_build && node publish_build/publisher",
+    "clean": "rm -R build/",
+    "cron": "node cron-jobs/cron"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +31,7 @@
   "dependencies": {
     "@sendgrid/mail": "^7.4.4",
     "@types/amqplib": "^0.8.0",
+    "@types/got": "^9.6.11",
     "@types/pino-pretty": "^4.7.0",
     "amqplib": "^0.8.0",
     "body-parser": "^1.19.0",
@@ -37,13 +40,16 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-list-endpoints": "^5.0.0",
+    "got": "^11.8.2",
     "http-status-codes": "^2.1.4",
     "method-override": "^3.0.0",
+    "node-cron": "^3.0.0",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",
     "pino": "^6.11.3",
     "pino-http": "^5.5.0",
     "pino-pretty": "^5.0.2",
+    "rmraf": "^1.0.3",
     "sequelize": "^6.6.2",
     "uuid": "^8.3.2"
   }

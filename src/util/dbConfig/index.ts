@@ -1,3 +1,4 @@
+import { logger } from '../../util/logger';
 import { Sequelize } from 'sequelize';
 import env from '../../config/environment';
 
@@ -13,7 +14,9 @@ class DBClient {
       port: parseInt(env.DATABASE_PORT + ''),
     });
     // if (env.IS_DEV) {
-    //   this.dbClient.sync();
+    //   this.dbClient.sync().then(() => {
+    //     logger.info('Db successfully synchronized!');
+    //   });
     // }
   }
   getClient() {
